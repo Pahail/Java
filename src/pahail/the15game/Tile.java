@@ -36,9 +36,9 @@ public class Tile {
     public Tile() {
     }
 
-    public Tile(int n, Point2D p, String imageName) {
-        this.number = n;
-        position = p;
+    public Tile(int tileNumber, Point2D position, String imageName) {
+        this.number = tileNumber;
+        this.position = position;
 
         Alert errorTexturesAlert = new Alert(Alert.AlertType.ERROR);
         errorTexturesAlert.setHeaderText("Error");
