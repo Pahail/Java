@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class TestesForReadLines {
         nonPermission = new File("src/test/java/FileUtilsTests/nonPermission");
         try {
             if(!nonPermission.createNewFile() ) {
+
                 throw new RuntimeException();
             }
             if(!nonPermission.setReadable(false) ) {
@@ -80,13 +82,14 @@ public class TestesForReadLines {
     }
 
     @Test(expected = IllegalArgumentException.class)
+
     public void readLinesWithNullPath() throws Exception {
         FileUtils.readLines( (String)null );
     }
 
-    @Test
+    @Test(expected = FileNotFoundException.class)
     public void readLinesWithNonexistentFile() throws Exception {
-        assertNull(FileUtils.readLines( "src/test/java/FileUtilsTests/nonexistent" ) );
+        FileUtils.readLines( "src/test/java/FileUtilsTests/nonexistent" );
     }
 
     @Test(expected = IllegalArgumentException.class)
